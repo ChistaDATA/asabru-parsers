@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.21)
 project(asabru_parsers)
 
 include_directories(../asabru-commons/src)
@@ -36,7 +36,7 @@ set_target_properties(${PROJECT_NAME}
 
 target_link_libraries(
     ${PROJECT_NAME} 
-        ${CMAKE_SOURCE_DIR}/lib/asabru-commons/lib/asabru-commons.a
+        ${CMAKE_SOURCE_DIR}/lib/asabru-commons/build/lib/libasabru_commons.a
 )
 
 
