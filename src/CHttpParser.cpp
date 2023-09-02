@@ -13,6 +13,7 @@ CHttpParser::CHttpParser() {}
 
 HttpMetadata CHttpParser::construct(void *buffer, int len)
 {
+    std::cout << "Constructing Http metadata (start): " << endl;
     HttpMetadata result;
     LineGrabber lineGrabber((char *)buffer, len);
 
@@ -41,16 +42,9 @@ HttpMetadata CHttpParser::construct(void *buffer, int len)
     }
 
     // Rest of the content will be the body of the packet
-    string body;
-    while (!lineGrabber.isEof())
-    {
-        if (!body.empty())
-        {
-            body += CRLF;
-        }
-        body += lineGrabber.getNextLine();
-    }
+    string body = lineGrabber.getContentTillEof();
     result.body = body;
+    std::cout << "Constructing Http metadata (end): " << endl;
     return result;
 }
 
