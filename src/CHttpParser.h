@@ -1,7 +1,7 @@
 #pragma  once
 #include <map>
 #include <string>
-
+#include "Utils.h"
 using namespace std;
 
 struct HttpMetadata {
@@ -11,9 +11,6 @@ struct HttpMetadata {
     std::string body;
     map<std::string, std::string> headers;
 };
-
-pair<std::string, std::string> ChopLine(std::string str);
-
 class CHttpParser {
 
 public:
