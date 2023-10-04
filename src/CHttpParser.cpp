@@ -1,9 +1,7 @@
 
 #include <map>
-#include "./CHttpParser.h"
-#include "LineGrabber.h"
+#include "CHttpParser.h"
 #include "Utils.h"
-#include "CommonTypes.h"
 
 using namespace std;
 
@@ -37,7 +35,7 @@ HttpMetadata CHttpParser::construct(void *buffer, int len)
         {
             break;
         }
-        pair<std::string, std::string> temp = ChopLine(test);
+        pair<std::string, std::string> temp = Utils::ChopLine(test);
         result.headers.insert(temp);
     }
 

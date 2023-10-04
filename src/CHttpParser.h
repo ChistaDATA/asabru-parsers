@@ -1,16 +1,10 @@
-#pragma  once
+#pragma once
+
 #include <map>
 #include <string>
 #include "Utils.h"
-using namespace std;
-
-struct HttpMetadata {
-    std::string url;
-    std::string method;
-    std::string protocol;
-    std::string body;
-    map<std::string, std::string> headers;
-};
+#include "LineGrabber.h"
+#include "CommonTypes.h"
 class CHttpParser {
 
 public:
