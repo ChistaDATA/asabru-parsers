@@ -18,7 +18,7 @@ namespace simple_http_server
     {
     public:
         Uri() = default;
-        explicit Uri(const std::string &path) : path_(path) { SetPathToLowercase(); }
+        explicit Uri(const std::string &path) : path_(path) { }
         ~Uri() = default;
 
         inline bool operator<(const Uri &other) const { return path_ < other.path_; }
