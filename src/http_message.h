@@ -1,8 +1,7 @@
 // Defines objects that represents HTTP request and response
 // and some utility functions to manipulate HTTP data
 
-#ifndef HTTP_MESSAGE_H_
-#define HTTP_MESSAGE_H_
+#pragma once
 
 #include <map>
 #include <string>
@@ -177,5 +176,14 @@ namespace simple_http_server
     HttpResponse string_to_response(const std::string &response_string);
 
 } // namespace simple_http_server
-
-#endif // HTTP_MESSAGE_H_
+static std::unordered_map<std::string, simple_http_server::HttpMethod> HttpMethodEnumMap = {
+        {"GET", simple_http_server::HttpMethod::GET},
+        {"HEAD", simple_http_server::HttpMethod::HEAD},
+        {"POST", simple_http_server::HttpMethod::POST},
+        {"PUT", simple_http_server::HttpMethod::PUT},
+        {"DELETE", simple_http_server::HttpMethod::DELETE},
+        {"CONNECT", simple_http_server::HttpMethod::CONNECT},
+        {"OPTIONS", simple_http_server::HttpMethod::OPTIONS},
+        {"TRACE", simple_http_server::HttpMethod::TRACE},
+        {"PATCH", simple_http_server::HttpMethod::PATCH},
+};
