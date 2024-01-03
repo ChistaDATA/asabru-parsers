@@ -15,6 +15,9 @@ if (CMAKE_COMPILER_IS_GNUCXX)
     add_compile_options(-Wall)
 endif()
 
+# Debug preprocessor definition
+add_compile_definitions(DEBUG)
+
 # Set source directory
 set(SOURCE_DIRECTORY "src")
 
