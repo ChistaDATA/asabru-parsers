@@ -13,6 +13,13 @@
 namespace simple_http_server
 {
 
+    inline std::string trim(std::string& str)
+    {
+        str.erase(str.find_last_not_of(' ')+1);         //suffixing spaces
+        str.erase(0, str.find_first_not_of(' '));       //prefixing spaces
+        return str;
+    }
+
     std::string to_string(HttpMethod method)
     {
         switch (method)
@@ -229,6 +236,7 @@ namespace simple_http_server
             if (lpos < rpos)
             {
                 message_body = request_string.substr(lpos, rpos - lpos);
+                message_body = trim(message_body);
             }
         }
 
