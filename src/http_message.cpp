@@ -3,12 +3,9 @@
 #include <algorithm>
 #include <cctype>
 #include <iterator>
-#include <map>
 #include <sstream>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
-#include <utility>
 
 namespace simple_http_server
 {
@@ -16,7 +13,11 @@ namespace simple_http_server
     inline std::string trim(std::string& str)
     {
         str.erase(str.find_last_not_of(' ')+1);         //suffixing spaces
+        str.erase(str.find_last_not_of('\n')+1);        //suffixing new lines
+        str.erase(str.find_last_not_of('\r')+1);        //suffixing carriage returns
         str.erase(0, str.find_first_not_of(' '));       //prefixing spaces
+        str.erase(0, str.find_first_not_of('\n'));      //prefixing new lines
+        str.erase(0, str.find_first_not_of('\n'));      //prefixing carriage returns
         return str;
     }
 
@@ -236,7 +237,6 @@ namespace simple_http_server
             if (lpos < rpos)
             {
                 message_body = request_string.substr(lpos, rpos - lpos);
-                message_body = trim(message_body);
             }
         }
 
@@ -263,14 +263,8 @@ namespace simple_http_server
             std::getline(header_stream, value);
 
             // remove whitespaces from the two strings
-            key.erase(std::remove_if(key.begin(), key.end(),
-                                     [](char c)
-                                     { return std::isspace(c); }),
-                      key.end());
-            value.erase(std::remove_if(value.begin(), value.end(),
-                                       [](char c)
-                                       { return std::isspace(c); }),
-                        value.end());
+            key = trim(key);
+            value = trim(value);
             request.SetHeader(key, value);
         }
 
