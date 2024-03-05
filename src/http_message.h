@@ -90,6 +90,9 @@ namespace simple_http_server
         {
             headers_[key] = std::move(value);
         }
+        std::string GetHeader(const std::string &key) {
+            return headers_[key];
+        }
         void RemoveHeader(const std::string &key) { headers_.erase(key); }
         void ClearHeader() { headers_.clear(); }
         void SetContent(const std::string &content)
