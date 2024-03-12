@@ -17,7 +17,7 @@ HEADER_DIRECTORIES("../asabru-commons/src/*.h" header_dir_list)
 include_directories(${header_dir_list})
 
 # Set C++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
