@@ -235,7 +235,7 @@ public:
     CHWirePTParser();
 
     ClientHelloPacket packet;
-    void LogResponse(char * buffer, int len);
+    void LogResponse(char * buffer, int len, std::string type);
     uint64_t parsePacket(char * stream, int len, std::string source);
     uint64_t parseClientHello(char * stream, uint64_t len);
     QueryType parseClientQuery(char * stream, uint64_t len, EXECUTION_CONTEXT *exec_context);

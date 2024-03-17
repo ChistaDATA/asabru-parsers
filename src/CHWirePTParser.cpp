@@ -6,7 +6,7 @@
 
 CHWirePTParser::CHWirePTParser() {}
 
-void CHWirePTParser::LogResponse(char * buffer, int len)
+void CHWirePTParser::LogResponse(char * buffer, int len, std::string type)
 {
     uint64_t packet_type = 0;
     uint64_t readBytes = 0;
@@ -14,7 +14,7 @@ void CHWirePTParser::LogResponse(char * buffer, int len)
 
     readBytes = readVarUInt(packet_type, temp);
 
-    this->parsePacket(temp, len, "Server");
+    this->parsePacket(temp, len, type);
 }
 
 uint64_t CHWirePTParser::parseClientHello(char * stream, uint64_t len)
@@ -57,7 +57,7 @@ uint64_t CHWirePTParser::parseClientHello(char * stream, uint64_t len)
 
 QueryType CHWirePTParser::parseClientQuery(char * stream, uint64_t len, EXECUTION_CONTEXT *exec_context)
 {
-    std::string correlation_id = (char *) (*exec_context)["correlation_id"];
+    std::string correlation_id = std::any_cast<std::string>((*exec_context)["correlation_id"]);
     ClientQueryPacket queryPacket;
     uint64_t packet_type = 0;
     uint8_t queryKind = 0;
