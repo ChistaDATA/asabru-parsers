@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 project(asabru_parsers)
+# Enables generation of compile_commands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 MACRO(HEADER_DIRECTORIES search_path return_list)
