@@ -273,9 +273,46 @@ namespace simple_http_server
         return request;
     }
 
-    HttpResponse string_to_response(const std::string &response_string)
+
+    HttpResponse string_to_response(const std::string& response_string)
     {
-        throw std::logic_error("Method not implemented");
+    std::istringstream iss(response_string);
+    HttpResponse response;
+
+    // Parse the response status line
+    std::string httpVersion;
+    int statusCode;
+    std::string reasonPhrase;
+    iss >> httpVersion >> statusCode;
+    std::getline(iss, reasonPhrase);
+
+    // Set the HTTP version and status code in the response
+    response.SetStatusCode(static_cast<HttpStatusCode>(statusCode));
+
+    // Parse and set headers
+    std::string line;
+    while (std::getline(iss, line) && !line.empty()) {
+        std::string key, value;
+        size_t colonPos = line.find(':');
+        if (colonPos != std::string::npos) {
+        key = line.substr(0, colonPos);
+        value = line.substr(colonPos + 1);
+        key = key.substr(key.find_first_not_of(" \t"));
+        value = value.substr(value.find_first_not_of(" \t"));
+        response.SetHeader(key, value);
+        }
     }
+
+    // The rest of the input is the message body
+    std::string messageBody;
+    std::stringstream responseBody;
+    while (std::getline(iss, line)) {
+        responseBody << line << "\n";
+    }
+    messageBody = responseBody.str();
+    response.SetContent(messageBody);
+
+    return response;
+}
 
 } // namespace simple_http_server
