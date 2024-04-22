@@ -8,7 +8,7 @@
 #include "Utils.h"
 #include "LineGrabber.h"
 #include "CommonTypes.h"
-#include "Logger.h"
+#include "logger/Logger.h"
 
 #define DBMS_MIN_REVISION_WITH_CLIENT_INFO 54032
 #define DBMS_MIN_REVISION_WITH_QUOTA_KEY_IN_CLIENT_INFO 54060
