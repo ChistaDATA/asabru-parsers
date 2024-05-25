@@ -35,7 +35,7 @@ else()
     CPMAddPackage(
             NAME asabru_commons
             GITHUB_REPOSITORY ChistaDATA/asabru-commons
-            VERSION 0.0.2
+            VERSION 0.0.3
     )
 endif()
 
